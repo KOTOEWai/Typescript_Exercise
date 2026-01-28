@@ -155,3 +155,163 @@ function Header({ title }: Props) {
 
 ---
 
+
+# TypeScript Basic Types
+
+TypeScript ရဲ့ **Basic Types** တွေက program ထဲမှာ သုံးမယ့် data အမျိုးအစားတွေကို တိတိကျကျ သတ်မှတ်ပေးနိုင်အောင် ကူညီပေးပါတယ်။ ဒါကြောင့် bug တွေကို early stage မှာ ဖမ်းနိုင်ပြီး code ကို ပိုပြီး safe ဖြစ်စေပါတယ်။
+
+---
+
+## 1. string
+
+စာသား (text) အမျိုးအစားကို ကိုယ်စားပြုပါတယ်။
+
+```ts
+let username: string = "Aung Aung";
+let message: string = `Hello ${username}`;
+```
+
+---
+
+## 2. number
+
+ကိန်းဂဏန်း အမျိုးအစားအားလုံး (integer, float) ကို သုံးပါတယ်။
+
+```ts
+let age: number = 25;
+let price: number = 1999.99;
+```
+
+---
+
+## 3. boolean
+
+True / False value အတွက် သုံးပါတယ်။
+
+```ts
+let isLoggedIn: boolean = true;
+let hasError: boolean = false;
+```
+
+---
+
+## 4. array
+
+တူညီတဲ့ type ရှိတဲ့ data တွေကို စုထားတဲ့ list ဖြစ်ပါတယ်။
+
+```ts
+let numbers: number[] = [1, 2, 3, 4];
+let names: Array<string> = ["Su Su", "Aung Aung"];
+```
+
+---
+
+## 5. tuple
+
+Array ဖြစ်ပေမယ့် **order နဲ့ type တိတိကျကျ** သတ်မှတ်ထားတာပါ။
+
+```ts
+let user: [number, string] = [1, "Kyaw Kyaw"];
+```
+
+---
+
+## 6. enum
+
+အတူတူ ဆိုင်တဲ့ constant value တွေကို group လုပ်ဖို့ သုံးပါတယ်။
+
+```ts
+enum Status {
+  Success,
+  Error,
+  Loading,
+}
+
+let currentStatus: Status = Status.Success;
+```
+
+---
+
+## 7. any
+
+TypeScript ရဲ့ type checking ကို **ပိတ်လိုက်တဲ့ type** ဖြစ်ပါတယ်။
+
+```ts
+let value: any = 10;
+value = "hello";
+value = true;
+```
+
+⚠️ Best practice အနေနဲ့ `any` ကို မသုံးသင့်ပါ ❌
+
+---
+
+## 8. unknown
+
+`any` နဲ့ ဆင်တူပေမယ့် **ပိုပြီး safe** ဖြစ်ပါတယ်။
+
+```ts
+let data: unknown;
+data = "text";
+
+if (typeof data === "string") {
+  console.log(data.toUpperCase());
+}
+```
+
+---
+
+## 9. void
+
+Function က ဘာမှ return မလုပ်တဲ့အခါ သုံးပါတယ်။
+
+```ts
+function logMessage(msg: string): void {
+  console.log(msg);
+}
+```
+
+---
+
+## 10. null & undefined
+
+Value မရှိတာကို ကိုယ်စားပြုပါတယ်။
+
+```ts
+let result: null = null;
+let value: undefined = undefined;
+```
+
+Strict mode မှာ အသုံးပြုရင် သတိထားရပါတယ်။
+
+---
+
+## 11. never
+
+ဘယ်တော့မှ value မ return မလုပ်တဲ့ function အတွက် သုံးပါတယ်။
+
+```ts
+function throwError(msg: string): never {
+  throw new Error(msg);
+}
+```
+
+---
+
+
+
+* `string` → စာသား
+* `number` → ကိန်းဂဏန်း
+* `boolean` → true / false
+* `array` → list of values
+* `tuple` → fixed structure array
+* `enum` → constant group
+* `any` → avoid using
+* `unknown` → safer than any
+* `void` → no return
+* `never` → no value ever
+
+---
+
+
+
