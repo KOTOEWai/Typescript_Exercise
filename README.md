@@ -315,3 +315,427 @@ function throwError(msg: string): never {
 
 
 
+# React Hooks with TypeScript
+
+React ကို TypeScript နဲ့ သုံးတဲ့အခါ **Hooks** တွေကို type-safe ဖြစ်အောင် သုံးနိုင်တာက အရေးကြီးဆုံးအချက်ပါ။ 
+
+---
+
+## 1. useState with TypeScript
+
+### Basic Type
+
+```tsx
+import { useState } from "react";
+
+function Counter() {
+  const [count, setCount] = useState<number>(0);
+
+  return (
+    <button onClick={() => setCount(count + 1)}>
+      Count: {count}
+    </button>
+  );
+}
+```
+
+### Union Type
+
+```tsx
+const [status, setStatus] = useState<"loading" | "success" | "error">("loading");
+```
+
+---
+## 2. useEffect with TypeScript
+
+`useEffect` မှာ type ကို များသောအားဖြင့် inference လုပ်နိုင်လို့ explicit type မရေးလည်းရပါတယ်။
+
+```tsx
+import { useEffect, useState } from "react";
+
+function User() {
+  const [name, setName] = useState<string>("");
+
+  useEffect(() => {
+    setName("Aung Aung");
+  }, []);
+
+  return <div>{name}</div>;
+}
+```
+⚠️ `useEffect` က `void | (() => void)` ကို return ပြန်ရပါတယ်။
+
+---
+
+## 3. useRef with TypeScript
+
+### DOM Reference
+
+```tsx
+import { useRef } from "react";
+
+function InputFocus() {
+  const inputRef = useRef<HTMLInputElement | null>(null);
+
+  const focusInput = () => {
+    inputRef.current?.focus();
+  };
+
+  return (
+    <>
+      <input ref={inputRef} />
+      <button onClick={focusInput}>Focus</button>
+    </>
+  );
+}
+```
+
+### Mutable Value
+
+```tsx
+const countRef = useRef<number>(0);
+```
+
+---
+
+## 4. useContext with TypeScript
+
+### Create Context
+
+```tsx
+import { createContext, useContext } from "react";
+
+interface ThemeContextType {
+  theme: "light" | "dark";
+  toggleTheme: () => void;
+}
+
+const ThemeContext = createContext<ThemeContextType | null>(null);
+```
+
+### Use Context
+
+```tsx
+function ThemeButton() {
+  const context = useContext(ThemeContext);
+
+  if (!context) return null;
+
+  return (
+    <button onClick={context.toggleTheme}>
+      Theme: {context.theme}
+    </button>
+  );
+}
+```
+
+---
+
+## 5. useReducer with TypeScript
+
+```tsx
+import { useReducer } from "react";
+
+type Action = | { type: "increment" }  | { type: "decrement" };
+
+function reducer(state: number, action: Action): number {
+  switch (action.type) {
+    case "increment":
+      return state + 1;
+    case "decrement":
+      return state - 1;
+    default:
+      return state;
+  }
+}
+
+function Counter() {
+  const [count, dispatch] = useReducer(reducer, 0);
+
+  return (
+    <>
+      <button onClick={() => dispatch({ type: "increment" })}>+</button>
+      <span>{count}</span>
+      <button onClick={() => dispatch({ type: "decrement" })}>-</button>
+    </>
+  );
+}
+```
+
+---
+
+## 6. useCallback with TypeScript
+
+```tsx
+import { useCallback } from "react";
+
+const handleClick = useCallback((id: number): void => {
+  console.log(id);
+}, []);
+```
+
+---
+
+## 7. useMemo with TypeScript
+
+```tsx
+import { useMemo } from "react";
+
+const total = useMemo<number>(() => {
+  return items.reduce((sum, item) => sum + item.price, 0);
+}, [items]);
+```
+
+---
+
+## 8. Custom Hooks with TypeScript
+
+```tsx
+import { useState } from "react";
+
+function useToggle(initial: boolean): [boolean, () => void] {
+  const [value, setValue] = useState<boolean>(initial);
+
+  const toggle = () => setValue(v => !v);
+
+  return [value, toggle];
+}
+```
+
+Usage:
+
+```tsx
+const [isOpen, toggle] = useToggle(false);
+```
+
+---
+
+## Best Practices
+
+* `useState` မှာ initial value မရှိရင် generic type သုံးပါ
+* `useRef` မှာ `null` ကို ထည့်စဉ်းစားပါ
+* `useContext` မှာ `null` safety ကို handle လုပ်ပါ
+* `any` ကို ရှောင်ပါ
+
+---
+
+
+React Hooks + TypeScript =
+
+* Safer code
+* Better autocomplete
+* Fewer runtime bugs
+* Professional codebase
+
+✅ React + TypeScript ကို production level သုံးချင်ရင် Hooks typing ကို သေချာနားလည်ထားရပါမယ်။
+
+---
+
+# Props & Children Typing 
+
+
+## 1. Why Props Typing Matters
+
+TypeScript helps you:
+
+* Catch bugs at compile time
+* Make components self-documented
+* Get better IntelliSense (autocomplete)
+* Avoid invalid prop usage
+
+Without proper typing, React components become harder to maintain as apps grow.
+
+---
+
+## 2. Basic Props Typing
+
+The most common way is to define a **Props type** and use it in your component.
+
+```tsx
+type ButtonProps = {
+  label: string;
+};
+
+
+function Button(props: ButtonProps) {
+  return <button>{props.label}</button>;
+}
+
+```
+
+### Destructuring Props (Recommended)
+
+```tsx
+type ButtonProps = {
+  label: string;
+};
+
+function Button({ label }: ButtonProps) {
+  return <button>{label}</button>;
+}
+```
+
+---
+
+## 3. Optional Props
+
+Use `?` to mark props as optional.
+
+```tsx
+type CardProps = {
+  title: string;
+  subtitle?: string;
+};
+
+function Card({ title, subtitle }: CardProps) {
+  return (
+    <div>
+      <h2>{title}</h2>
+      {subtitle && <p>{subtitle}</p>}
+    </div>
+  );
+}
+```
+
+---
+
+## 4. Typing Event Props
+
+When passing functions as props:
+
+```tsx
+type InputProps = {
+  onChange: (value: string) => void;
+};
+
+function Input({ onChange }: InputProps) {
+  return (
+    <input
+      onChange={(e) => onChange(e.target.value)}
+    />
+  );
+}
+```
+
+---
+
+## 5. Children Typing (The Important Part)
+
+### The Correct Way: `React.ReactNode`
+
+```tsx
+type ContainerProps = {
+  children: React.ReactNode;
+};
+
+function Container({ children }: ContainerProps) {
+  return <div className="container">{children}</div>;
+}
+```
+
+✅ `React.ReactNode` supports:
+
+* JSX elements
+* strings & numbers
+* fragments
+* arrays
+* conditional rendering
+
+---
+
+## 6. Children with Other Props
+
+```tsx
+type LayoutProps = {
+  title: string;
+  children: React.ReactNode;
+};
+
+function Layout({ title, children }: LayoutProps) {
+  return (
+    <section>
+      <h1>{title}</h1>
+      {children}
+    </section>
+  );
+}
+```
+
+Usage:
+
+```tsx
+<Layout title="Dashboard">
+  <p>Welcome back!</p>
+</Layout>
+```
+
+---
+
+## 7. `React.FC` and Children (Why It’s Not Recommended)
+
+```tsx
+const Box: React.FC<{ title: string }> = ({ title, children }) => {
+  return (
+    <div>
+      <h2>{title}</h2>
+      {children}
+    </div>
+  );
+};
+```
+
+⚠️ Why many teams avoid `React.FC`:
+
+* Automatically adds `children` (less explicit)
+* Can cause confusion with defaultProps
+* Less flexible for generics
+
+✅ Modern recommendation: **explicit props typing**
+
+---
+
+## 8. Restricting Children (Advanced)
+
+Only allow a specific component:
+
+```tsx
+type TabsProps = {
+  children: React.ReactElement<TabProps>[];
+};
+```
+
+Only allow text:
+
+```tsx
+type TextOnlyProps = {
+  children: string;
+};
+```
+
+---
+
+## 9. Props with Default Values
+
+```tsx
+type AvatarProps = {
+  size?: number;
+};
+
+function Avatar({ size = 40 }: AvatarProps) {
+  return <img width={size} height={size} />;
+}
+```
+
+---
+✔ Always define a Props type or interface
+✔ Use `React.ReactNode` for children
+✔ Prefer destructuring in function parameters
+✔ Avoid `React.FC` unless your team standardizes it
+✔ Keep props small and meaningful
+---
+* Props typing ဆိုတာ Component ကို ဘယ်လို data ပို့လို့ရလဲဆိုတာ သတ်မှတ်ပေးခြင်းပါ
+* `children` ကို type လုပ်တဲ့အခါ `React.ReactNode` ကို အသုံးပြုပါ
+* Optional props တွေအတွက် `?` သုံးပါ
+* `React.FC` မသုံးပဲ explicit typing လုပ်တာက ပိုလုံခြုံပါတယ်
+---
+
