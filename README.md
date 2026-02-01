@@ -478,15 +478,150 @@ type AdminUser = User & { role: string };
 
 ---
 
+# Compiling TypeScript
+
+## tsc & tsconfig.json
+
+### What is compiling?
+
+Browser / Node.js က TypeScript ကိုမဖတ်နိုင်ပါဘူး
+ဒါကြောင့် TypeScript ကို JavaScript ပြောင်းတဲ့ process ကို compile လို့ခေါ်ပါတယ်။
+
+```js
+TypeScript (.ts / .tsx)  →  JavaScript (.js)
+```
+
+### tsc (TypeScript Compiler)
+
+* Install TypeScript
+```js
+npm install -g typescript
+```
+
+* Check version
+```js
+tsc -v
+```
+
+* Compile single file
+```js
+tsc index.ts
+```
+➡️ index.js ထွက်လာမယ်
+
+* Compile with watch mode 
+
+```js
+tsc --watch
+```
+file save တိုင်း auto compile
 
 
 
+### What is tsconfig.json?
+
+* TypeScript compiler ကို ဘယ်လို compile လုပ်မလဲ လို့ညွှန်ကြားတဲ့ config file ပါ
+
+Create file
+
+```js
+tsc --init
+```
 
 
 
+# Union & Intersection Types (TypeScript)
 
+## Union (|) → OR (ဒီ type ဖြစ်နိုင်တယ် သို့မဟုတ် အဲ့ဒီ type)
 
+## Intersection (&) → AND (ဒီ type နဲ့ အဲ့ဒီ type နှစ်ခုလုံး)
 
+### Union Types (|)
+
+* Basic Union
+```js
+let id: number | string;
+
+id = 1;
+id = "A001";
+// id = true ❌
+```
+### Union in Functions
+
+```js
+function printId(id: number | string) {
+  console.log(id);
+}
+
+function printId(id: number | string) {
+  if (typeof id === "string") {
+    console.log(id.toUpperCase());
+  } else {
+    console.log(id.toFixed(2));
+  }
+}
+
+```
+
+### Union with Literal Types
+```js
+type Status = "loading" | "success" | "error";
+
+let state: Status = "loading";
+
+```
+
+# Intersection Types (&)
+
+## Basic Intersection
+```js
+type Person = {
+  name: string;
+};
+
+type Employee = {
+  salary: number;
+};
+
+type Staff = Person & Employee;
+
+const staff: Staff = {
+  name:"toe",
+  salary: 20000
+};
+
+```
+* properties အားလုံးပါရမယ်
+
+## Intersection with Interfaces
+
+```js
+interface User {
+  id: number;
+}
+
+interface Admin {
+  role: "admin";
+}
+
+type AdminUser = User & Admin;
+
+```
+## Intersection in React Props
+
+```js
+interface BaseProps {
+  children: React.ReactNode;
+}
+
+interface ButtonProps {
+  variant: "primary" | "secondary";
+}
+
+type Props = BaseProps & ButtonProps;
+```
+
+---
 
 
 
