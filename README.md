@@ -313,6 +313,181 @@ function throwError(msg: string): never {
 
 ---
 
+# Type Annotation & Type Inference
+
+## What is Type Annotation?
+
+Type Annotation ဆိုတာ
+👉 Variable / function ကို ဒီ type ဖြစ်ရမယ် လို့ ကိုယ်တိုင်ရေးပေးတာပါ
+
+
+* Variable annotation
+
+```js
+let name: string = "Alex";
+let age: number = 20;
+let isAdmin: boolean = true;
+```
+
+* Function annotation
+
+```js
+function add(a: number, b: number): number {
+  return a + b;
+}
+```
+
+* Arrow function
+
+```js
+const greet = (name: string): string => {
+  return `Hello ${name}`;
+};
+```
+
+* Array & object annotation
+
+```js
+let numbers: number[] = [1, 2, 3];
+
+let user: { id: number; name: string } = {
+  id: 1,
+  name: "Alex",
+};
+```
+
+---
+
+## What is Type Inference?
+
+Type Inference ဆိုတာ
+ TypeScript က ကိုယ်တိုင် type ကို ခန့်မှန်းပေးတာ
+
+* Variable inference
+```js
+let count = 10;
+// TS knows: number
+
+
+❌ Error
+
+count = "ten";
+```
+
+
+* Function return inference
+
+```js
+function multiply(a: number, b: number) {
+  return a * b;
+}
+// return type => number (auto)
+```
+
+* useState inference (React)
+```js
+const [count, setCount] = useState(0);
+// TS => number
+```
+
+* Object inference
+
+```js
+const user = {
+  id: 1,
+  name: "Alex",
+};
+```
+
+
+
+---
+
+# Interfaces & Type Aliases
+
+## Interface
+
+ What is Interface?
+
+ Object structure (shape) ကို define လုပ်ဖို့
+
+* Basic interface
+
+```js
+interface User {
+  id: number;
+  name: string;
+}
+```
+
+* Optional & readonly
+
+```js
+interface User {
+  id: number;
+  name?: string;
+  readonly email: string;
+}
+```
+
+* Interface extend
+
+```js
+interface Person {
+  name: string;
+}
+
+interface Employee extends Person {
+  salary: number;
+}
+
+```
+
+
+
+## Type Alias
+
+What is Type Alias?
+
+Type ကို နာမည်တစ်ခု assign လုပ်တာ
+
+
+* Object type
+```js
+type User = {
+  id: number;
+  name: string;
+};
+```
+
+* Union type 
+```js
+
+type Status = "loading" | "success" | "error";
+```
+
+* Function type
+```js
+type Add = (a: number, b: number) => number;
+```
+
+* Intersection
+```js
+type AdminUser = User & { role: string };
+```
+
+---
+
+
+
+
+
+
+
+
+
+
+
 
 
 # React Hooks with TypeScript
@@ -738,4 +913,5 @@ function Avatar({ size = 40 }: AvatarProps) {
 * Optional props တွေအတွက် `?` သုံးပါ
 * `React.FC` မသုံးပဲ explicit typing လုပ်တာက ပိုလုံခြုံပါတယ်
 ---
+
 
