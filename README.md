@@ -528,7 +528,7 @@ Create file
 tsc --init
 ```
 
-
+---
 
 # Union & Intersection Types (TypeScript)
 
