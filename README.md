@@ -758,6 +758,258 @@ Usage:
   renderItem={(item) => <div>{item}</div>}
 />
 ```
+
+# Utility Types ဆိုတာ ဘာလဲ?
+* Utility Types ဆိုတာ TypeScript မှာ ပါဝင်ပြီးသား (built-in) ဖြစ်တဲ့ အထူးအသုံးဝင်တဲ့ Type တွေပါ။ ဒီ Type တွေကို သုံးပြီး ရှိပြီးသား Type တွေကို ပြောင်းလဲပြီး အသစ်တွေ ဖန်တီးလို့ရပါတယ်။
+
+```js
+// မူရင်း User Type
+interface User {
+    id: number;
+    name: string;
+    email: string;
+    age: number;
+    address: string;
+}
+
+// Utility Types သုံးပြီး အသစ်ပြောင်းခြင်း
+type PartialUser = Partial<User>;  // property အားလုံး optional ဖြစ်သွား
+type SimpleUser = Pick<User, 'id' | 'name'>;  // လိုတဲ့ property တွေပဲ ယူ
+type UserWithoutAge = Omit<User, 'age'>;  // age ကို ဖယ်ထုတ်
+```
+ ## 1.Partial<T> 
+
+```js
+interface User {
+    id: number;
+    name: string;
+    email: string;
+}
+
+// User ရဲ့ property အားလုံး optional ဖြစ်သွား
+type PartialUser = Partial<User>;
+
+// သုံးပုံ
+const user1: PartialUser = {};  // ✓ ဘာမှမထည့်လည်း ရ
+const user2: PartialUser = { id: 1 };  // ✓ id ပဲထည့်
+const user3: PartialUser = { name: "မောင်မောင်" };  // ✓ name ပဲထည့်
+const user4: PartialUser = { 
+    id: 1, 
+    name: "မောင်မောင်", 
+    email: "maung@example.com" 
+};  // ✓ အကုန်ထည့်
+
+// ❌ ဒါမျိုးလည်း ရ
+const user5: PartialUser = { phone: "09123456789" };  // ✗ Error! phone မရှိ
+```
+---
+## 2. Required<T> 
+
+```js
+interface Config {
+    apiUrl?: string;      // optional
+    timeout?: number;     // optional  
+    retry?: boolean;      // optional
+}
+
+// Config ရဲ့ optional property အားလုံး required ဖြစ်သွား
+type RequiredConfig = Required<Config>;
+
+// သုံးပုံ
+const config1: RequiredConfig = {
+    apiUrl: "https://api.example.com",
+    timeout: 5000,
+    retry: true
+};  // ✓ အကုန်ထည့်
+
+const config2: RequiredConfig = {
+    apiUrl: "https://api.example.com"
+};  // ✗ Error! timeout, retry မထည့်
+```
+## 3. Readonly<T>
+
+```js
+interface Book {
+    title: string;
+    author: string;
+    price: number;
+}
+
+// Book ရဲ့ property အားလုံး ပြင်လို့မရ (immutable)
+type ReadonlyBook = Readonly<Book>;
+
+// သုံးပုံ
+const book: ReadonlyBook = {
+    title: "မြန်မာ့သမိုင်း",
+    author: "ဒေါက်တာသန်းထွန်း",
+    price: 5000
+};
+
+book.title = "သမိုင်းအသစ်";  // ✗ Error! ပြင်လို့မရ
+book.price = 6000;              // ✗ Error! ပြင်လို့မရ
+
+```
+
+---
+
+## 4. Pick<T, K>
+
+```js
+interface Product {
+    id: number;
+    name: string;
+    price: number;
+    description: string;
+    category: string;
+    stock: number;
+}
+
+// Product ကနေ id, name, price ပဲယူ
+type ProductPreview = Pick<Product, 'id' | 'name' | 'price'>;
+
+// သုံးပုံ
+const preview: ProductPreview = {
+    id: 1,
+    name: "iPhone 15",
+    price: 2000000
+};  // ✓ ဒါပဲလိုတယ်
+
+
+// ❌ ဒါမျိုးမရ
+const wrongPreview: ProductPreview = {
+    id: 1,
+    name: "iPhone 15"
+};  // ✗ Error! price မပါ
+
+```
+---
+## 5. Omit<T, K>
+
+```js
+interface Student {
+    id: number;
+    name: string;
+    age: number;
+    address: string;
+    phone: string;
+    nrc: string;      // မပြချင်တာ
+    password: string; // မပြချင်တာ
+}
+
+// Student ကနေ nrc, password ဖယ်ထုတ်
+type PublicStudent = Omit<Student, 'nrc' | 'password'>;
+
+// သုံးပုံ
+const student: PublicStudent = {
+    id: 1,
+    name: "မောင်မောင်",
+    age: 20,
+    address: "ရန်ကုန်",
+    phone: "09123456789"
+};  // ✓ nrc, password မပါ
+
+// ❌ ဒါမျိုးမရ
+const wrongStudent: PublicStudent = {
+    id: 1,
+    name: "မောင်မောင်",
+    nrc: "12/ABC(N)123456"  // ✗ Error! nrc မပါနိုင်
+};
+
+```
+---
+
+## 6. Record<K, T>
+
+```js
+// Key တွေ ဘယ်လိုဖြစ်မယ်၊ Value တွေ ဘယ်လိုဖြစ်မယ် သတ်မှတ်
+type PageTitles = Record<string, string>;
+
+// သုံးပုံ
+const titles: PageTitles = {
+    home: "ပင်မစာမျက်နှာ",
+    about: "ကျွန်ုပ်တို့အကြောင်း",
+    contact: "ဆက်သွယ်ရန်"
+};
+
+// ဒါမျိုးလည်းရေး
+type UserRole = 'admin' | 'user' | 'guest';
+type RolePermissions = Record<UserRole, string[]>;
+
+const permissions: RolePermissions = {
+    admin: ['create', 'read', 'update', 'delete'],
+    user: ['read', 'update'],
+    guest: ['read']
+};
+
+```
+---
+## 7. Exclude<T, U>
+
+```js
+type Colors = 'red' | 'blue' | 'green' | 'yellow';
+type PrimaryColors = Exclude<Colors, 'yellow'>;  // 'yellow' ဖယ်ထုတ်
+
+// Result: 'red' | 'blue' | 'green'
+
+// သုံးပုံ
+const color1: PrimaryColors = 'red';    // ✓
+const color2: PrimaryColors = 'blue';   // ✓
+const color3: PrimaryColors = 'yellow'; // ✗ Error!
+```
+---
+## 8. Extract<T, U>
+```js
+type Animals = 'cat' | 'dog' | 'bird' | 'fish';
+type Pets = Extract<Animals, 'cat' | 'dog'>;  // cat, dog ပဲယူ
+
+// Result: 'cat' | 'dog'
+
+// သုံးပုံ
+const pet1: Pets = 'cat';   // ✓
+const pet2: Pets = 'dog';   // ✓
+const pet3: Pets = 'bird';  // ✗ Error!
+```
+
+## NonNullable<T>
+
+```js
+type MaybeString = string | null | undefined;
+type DefinitelyString = NonNullable<MaybeString>;  // null, undefined ဖယ်
+
+// Result: string
+
+// သုံးပုံ
+const str1: DefinitelyString = "မင်္ဂလာပါ";  // ✓
+const str2: DefinitelyString = null;            // ✗ Error!
+const str3: DefinitelyString = undefined;       // ✗ Error!
+
+```
+---
+
+## 10. ReturnType<T> 
+
+```js
+function getUser() {
+    return {
+        id: 1,
+        name: "မောင်မောင်",
+        age: 25
+    };
+}
+
+type UserReturnType = ReturnType<typeof getUser>;
+
+// Result: { id: number; name: string; age: number; }
+
+// သုံးပုံ
+const user: UserReturnType = {
+    id: 2,
+    name: "စုစု",
+    age: 22
+};
+
+```
+
 ---
 # React Hooks with TypeScript
 
