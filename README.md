@@ -528,7 +528,7 @@ Create file
 tsc --init
 ```
 
-
+---
 
 # Union & Intersection Types (TypeScript)
 
@@ -620,11 +620,145 @@ interface ButtonProps {
 
 type Props = BaseProps & ButtonProps;
 ```
+# What are Generics in TypeScript?
+
+* Generics let you write reusable, type-safe code that works with different data types without losing type information.
+
+👉 Think of generics as “types with placeholders”.
+
+```js
+function identity(value: any) {
+  return value;
+}
+```
+
+❌ Problem: any removes type safety.
+
+* Generic Version
+
+```js
+function identity<T>(value: T): T {
+  return value;
+}
+```
+
+* T is a type variable
+* TypeScript figures out what T is when you use the function
+
+
+```js
+identity<string>("Hello");
+identity<number>(100);
+```
+Safe + flexible.
 
 ---
 
+ * Generic Functions
+
+Example: Get first element
+
+```js
+function getFirst<T>(arr: T[]): T {
+  return arr[0];
+}
+
+getFirst<number>([1, 2, 3]);     // number
+getFirst<string>(["a", "b"]);   // string
+```
+
+TypeScript remembers the type.
+
+---
+
+* Generic Arrow Function
+
+```js
+const wrapValue = <T>(value: T) => {
+  return { value };
+};
+
+wrapValue<string>("Hello");
+wrapValue<number>(10);
+
+```
+
+* Generic Interfaces
+```js
+interface ApiResponse<T> {
+  data: T;
+  success: boolean;
+}
 
 
+Usage:
+
+const userResponse: ApiResponse<{ name: string; age: number }> = {
+  data: { name: "John", age: 25 },
+  success: true,
+};
+```
+
+🔥 Very common in API + React apps.
+
+* Generic Types (Type Aliases)
+
+```js
+type Box<T> = {
+  value: T;
+};
+
+const numberBox: Box<number> = { value: 10 };
+const stringBox: Box<string> = { value: "Hello" };
+```
+* Generics with Multiple Types
+```js
+function pair<T, U>(a: T, b: U) {
+  return [a, b];
+}
+
+pair<string, number>("age", 25);
+```
+
+* Generic Constraints (extends)
+
+Sometimes you want to limit what T can be.
+```js
+function getLength<T extends { length: number }>(value: T) {
+  return value.length;
+}
+
+getLength("Hello");     // ✅
+getLength([1, 2, 3]);  // ✅
+getLength(123);        // ❌ Error
+```
+* Generics in React 
+
+useState with Generics
+```js
+const [count, setCount] = useState<number>(0);
+```
+
+* Props with Generics
+```js
+type ListProps<T> = {
+  items: T[];
+  renderItem: (item: T) => React.ReactNode;
+};
+
+function List<T>({ items, renderItem }: ListProps<T>) {
+  return <>{items.map(renderItem)}</>;
+}
+
+
+Usage:
+
+<List
+  items={[1, 2, 3]}
+  renderItem={(item) => <div>{item}</div>}
+/>
+```
+---
 # React Hooks with TypeScript
 
 React ကို TypeScript နဲ့ သုံးတဲ့အခါ **Hooks** တွေကို type-safe ဖြစ်အောင် သုံးနိုင်တာက အရေးကြီးဆုံးအချက်ပါ။ 
