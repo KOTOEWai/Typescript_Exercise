@@ -10,7 +10,7 @@
   - [Union & Intersection Types](#union--intersection-types)
   - [Generics in TypeScript](#what-are-generics-in-typescript)
   - [Utility Types](#utility-types-ဆိုတာ-ဘာလဲ)
-    -[1.Partial<T>](#1.Partial<T>)
+    - [1.Partial<T>](#1.Partial<T>)
 - [React With TypeScript](#react-with-typescript)
   - [React Hooks with TypeScript](#react-hooks-with-typescript)
   - [Props & Children Typing](#props--children-typing)
