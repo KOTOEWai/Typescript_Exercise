@@ -4,19 +4,19 @@
 
   - [Typescript_Exercise](#typescript_exercise)
     -[What is TypeScript?](#what_is_typescript?)
-    -[Why TypeScript?](#why_typeScript?)
+    -[TypeScript Basic Types](#typeScript_basic_types)
   -[React With Typescript](#react_with_typescript)
 
-# Typescript_Exercise
+## Typescript_Exercise
 
 
-## What is TypeScript?
+### What is TypeScript?
 
 **TypeScript** ဆိုတာ JavaScript ကို အခြေခံထားတဲ့ **strongly-typed programming language** တစ်ခုဖြစ်ပြီး Microsoft က ဖန်တီးထားတာပါ။ JavaScript ကို ပိုပြီး **safe, scalable, maintainable** ဖြစ်အောင် တိုးချဲ့ထားတဲ့ language လို့ နားလည်နိုင်ပါတယ်။
 
 ---
 
-## 1. Why TypeScript?
+ 1. Why TypeScript?
 
 JavaScript က flexible ဖြစ်ပေမယ့် —
 
@@ -28,7 +28,7 @@ JavaScript က flexible ဖြစ်ပေမယ့် —
 
 ---
 
-## 2. TypeScript = JavaScript + Types
+ 2. TypeScript = JavaScript + Types
 
 TypeScript က JavaScript ရဲ့ **superset** ဖြစ်ပါတယ်။
 
@@ -42,7 +42,7 @@ let isOnline: boolean = true;
 
 ---
 
-## 3. Type Safety (Main Advantage)
+ 3. Type Safety (Main Advantage)
 
 ```ts
 function add(a: number, b: number) {
@@ -57,7 +57,7 @@ add(5, "10"); // ❌ Error
 
 ---
 
-## 4. Type Inference
+ 4. Type Inference
 
 TypeScript က type ကို အချို့အခြေအနေတွေမှာ **auto detect** လုပ်ပေးပါတယ်။
 
@@ -68,7 +68,7 @@ username = 123; // ❌ Error
 
 ---
 
-## 5. Interfaces
+ 5. Interfaces
 
 Object structure ကို သတ်မှတ်ဖို့ `interface` ကို သုံးပါတယ်။
 
@@ -88,7 +88,7 @@ const user: User = {
 
 ---
 
-## 6. Type Aliases
+ 6. Type Aliases
 
 ```ts
 type Status = "success" | "error" | "loading";
@@ -100,7 +100,7 @@ let currentStatus: Status = "success";
 
 ---
 
-## 7. TypeScript with Functions
+ 7. TypeScript with Functions
 
 ```ts
 function greet(name: string): string {
@@ -112,7 +112,7 @@ function greet(name: string): string {
 
 ---
 
-## 8. TypeScript with React
+ 8. TypeScript with React
 
 ```tsx
 interface Props {
@@ -128,7 +128,7 @@ function Header({ title }: Props) {
 
 ---
 
-## 9. TypeScript vs JavaScript
+ 9. TypeScript vs JavaScript
 
 | Feature             | JavaScript | TypeScript |
 | ------------------- | ---------- | ---------- |
@@ -139,7 +139,7 @@ function Header({ title }: Props) {
 
 ---
 
-## 10. Common Misconceptions
+ 10. Common Misconceptions
 
 ❌ TypeScript = New runtime language
 
@@ -147,7 +147,7 @@ function Header({ title }: Props) {
 
 ---
 
-## 11. When to use TypeScript
+ 11. When to use TypeScript
 
 ✅ Medium to large projects
 ✅ Team projects
@@ -167,13 +167,15 @@ function Header({ title }: Props) {
 
 
 
-## TypeScript Basic Types
+
+
+### TypeScript Basic Types
 
 TypeScript ရဲ့ **Basic Types** တွေက program ထဲမှာ သုံးမယ့် data အမျိုးအစားတွေကို တိတိကျကျ သတ်မှတ်ပေးနိုင်အောင် ကူညီပေးပါတယ်။ ဒါကြောင့် bug တွေကို early stage မှာ ဖမ်းနိုင်ပြီး code ကို ပိုပြီး safe ဖြစ်စေပါတယ်။
 
 ---
 
-## 1. string
+1. string
 
 စာသား (text) အမျိုးအစားကို ကိုယ်စားပြုပါတယ်။
 
@@ -184,7 +186,7 @@ let message: string = `Hello ${username}`;
 
 ---
 
-## 2. number
+ 2. number
 
 ကိန်းဂဏန်း အမျိုးအစားအားလုံး (integer, float) ကို သုံးပါတယ်။
 
@@ -195,7 +197,7 @@ let price: number = 1999.99;
 
 ---
 
-## 3. boolean
+ 3. boolean
 
 True / False value အတွက် သုံးပါတယ်။
 
@@ -206,7 +208,7 @@ let hasError: boolean = false;
 
 ---
 
-## 4. array
+ 4. array
 
 တူညီတဲ့ type ရှိတဲ့ data တွေကို စုထားတဲ့ list ဖြစ်ပါတယ်။
 
@@ -217,7 +219,7 @@ let names: Array<string> = ["Su Su", "Aung Aung"];
 
 ---
 
-## 5. tuple
+ 5. tuple
 
 Array ဖြစ်ပေမယ့် **order နဲ့ type တိတိကျကျ** သတ်မှတ်ထားတာပါ။
 
@@ -227,7 +229,7 @@ let user: [number, string] = [1, "Kyaw Kyaw"];
 
 ---
 
-## 6. enum
+6. enum
 
 အတူတူ ဆိုင်တဲ့ constant value တွေကို group လုပ်ဖို့ သုံးပါတယ်။
 
@@ -243,7 +245,7 @@ let currentStatus: Status = Status.Success;
 
 ---
 
-## 7. any
+7. any
 
 TypeScript ရဲ့ type checking ကို **ပိတ်လိုက်တဲ့ type** ဖြစ်ပါတယ်။
 
@@ -257,7 +259,7 @@ value = true;
 
 ---
 
-## 8. unknown
+ 8. unknown
 
 `any` နဲ့ ဆင်တူပေမယ့် **ပိုပြီး safe** ဖြစ်ပါတယ်။
 
@@ -272,7 +274,7 @@ if (typeof data === "string") {
 
 ---
 
-## 9. void
+ 9. void
 
 Function က ဘာမှ return မလုပ်တဲ့အခါ သုံးပါတယ်။
 
@@ -284,7 +286,7 @@ function logMessage(msg: string): void {
 
 ---
 
-## 10. null & undefined
+ 10. null & undefined
 
 Value မရှိတာကို ကိုယ်စားပြုပါတယ်။
 
@@ -297,7 +299,7 @@ Strict mode မှာ အသုံးပြုရင် သတိထားရပ
 
 ---
 
-## 11. never
+ 11. never
 
 ဘယ်တော့မှ value မ return မလုပ်တဲ့ function အတွက် သုံးပါတယ်။
 
@@ -325,9 +327,12 @@ function throwError(msg: string): never {
 ---
 
 
-## Type Annotation & Type Inference
 
-## What is Type Annotation?
+
+
+### Type Annotation & Type Inference
+
+ What is Type Annotation?
 
 Type Annotation ဆိုတာ
 👉 Variable / function ကို ဒီ type ဖြစ်ရမယ် လို့ ကိုယ်တိုင်ရေးပေးတာပါ
@@ -370,7 +375,7 @@ let user: { id: number; name: string } = {
 
 ---
 
-## What is Type Inference?
+ What is Type Inference?
 
 Type Inference ဆိုတာ
  TypeScript က ကိုယ်တိုင် type ကို ခန့်မှန်းပေးတာ
@@ -415,9 +420,9 @@ const user = {
 
 ---
 
-## Interfaces & Type Aliases
+### Interfaces & Type Aliases
 
-## Interface
+ Interface
 
  What is Interface?
 
@@ -457,7 +462,7 @@ interface Employee extends Person {
 
 
 
-## Type Alias
+ Type Alias
 
 What is Type Alias?
 
