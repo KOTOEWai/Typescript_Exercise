@@ -1,5 +1,5 @@
 
-## 📑 Table of Contents
+## Table of Contents
 
 
   - [Typescript_Exercise](#typescript_exercise)
