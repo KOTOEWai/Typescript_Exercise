@@ -1,22 +1,41 @@
 
 ## 📑 Table of Contents
 
+- [Typescript Exercise](#typescript-exercise)
+  - [What is TypeScript](#what-is-typescript)
+  - [TypeScript Basic Types](#typescript-basic-types)
+  - [Type Annotation & Type Inference](#type-annotation--type-inference)
+  - [Interfaces & Type Aliases](#interfaces--type-aliases)
+  - [Compiling TypeScript](#compiling-typescript)
+  - [Union & Intersection Types](#union--intersection-types)
+  - [Generics in TypeScript](#what-are-generics-in-typescript)
+  - [Utility Types](#utility-types-ဆိုတာ-ဘာလဲ)
+    - [Partial](#1-partial)
+    - [Required](#2-required)
+    - [Readonly](#3-readonly)
+    - [Pick](#4-pick)
+    - [Omit](#5-omit)
+    - [Record](#6-record)
+    - [Exclude](#7-exclude)
+    - [Extract](#8-extract)
+    - [NonNullable](#9-nonnullable)
+    - [ReturnType](#10-returntype)
 
-  - [Typescript_Exercise](#typescript_exercise)
-    -[What is TypeScript?](#what_is_typescript?)
-    -[Why TypeScript?](#why_typeScript?)
-  -[React With Typescript](#react_with_typescript)
+- [React With TypeScript](#react-with-typescript)
+  - [React Hooks with TypeScript](#react-hooks-with-typescript)
+  - [Props & Children Typing](#props--children-typing)
+  - [Event Handling Types](#event-handling-types)
 
-# Typescript_Exercise
+## Typescript Exercise
 
 
-## What is TypeScript?
+### What is TypeScript?
 
 **TypeScript** ဆိုတာ JavaScript ကို အခြေခံထားတဲ့ **strongly-typed programming language** တစ်ခုဖြစ်ပြီး Microsoft က ဖန်တီးထားတာပါ။ JavaScript ကို ပိုပြီး **safe, scalable, maintainable** ဖြစ်အောင် တိုးချဲ့ထားတဲ့ language လို့ နားလည်နိုင်ပါတယ်။
 
 ---
 
-## 1. Why TypeScript?
+ 1. Why TypeScript?
 
 JavaScript က flexible ဖြစ်ပေမယ့် —
 
@@ -28,7 +47,7 @@ JavaScript က flexible ဖြစ်ပေမယ့် —
 
 ---
 
-## 2. TypeScript = JavaScript + Types
+ 2. TypeScript = JavaScript + Types
 
 TypeScript က JavaScript ရဲ့ **superset** ဖြစ်ပါတယ်။
 
@@ -42,7 +61,7 @@ let isOnline: boolean = true;
 
 ---
 
-## 3. Type Safety (Main Advantage)
+ 3. Type Safety (Main Advantage)
 
 ```ts
 function add(a: number, b: number) {
@@ -57,7 +76,7 @@ add(5, "10"); // ❌ Error
 
 ---
 
-## 4. Type Inference
+ 4. Type Inference
 
 TypeScript က type ကို အချို့အခြေအနေတွေမှာ **auto detect** လုပ်ပေးပါတယ်။
 
@@ -68,7 +87,7 @@ username = 123; // ❌ Error
 
 ---
 
-## 5. Interfaces
+ 5. Interfaces
 
 Object structure ကို သတ်မှတ်ဖို့ `interface` ကို သုံးပါတယ်။
 
@@ -88,7 +107,7 @@ const user: User = {
 
 ---
 
-## 6. Type Aliases
+ 6. Type Aliases
 
 ```ts
 type Status = "success" | "error" | "loading";
@@ -100,7 +119,7 @@ let currentStatus: Status = "success";
 
 ---
 
-## 7. TypeScript with Functions
+ 7. TypeScript with Functions
 
 ```ts
 function greet(name: string): string {
@@ -112,7 +131,7 @@ function greet(name: string): string {
 
 ---
 
-## 8. TypeScript with React
+ 8. TypeScript with React
 
 ```tsx
 interface Props {
@@ -128,7 +147,7 @@ function Header({ title }: Props) {
 
 ---
 
-## 9. TypeScript vs JavaScript
+ 9. TypeScript vs JavaScript
 
 | Feature             | JavaScript | TypeScript |
 | ------------------- | ---------- | ---------- |
@@ -139,7 +158,7 @@ function Header({ title }: Props) {
 
 ---
 
-## 10. Common Misconceptions
+ 10. Common Misconceptions
 
 ❌ TypeScript = New runtime language
 
@@ -147,7 +166,7 @@ function Header({ title }: Props) {
 
 ---
 
-## 11. When to use TypeScript
+ 11. When to use TypeScript
 
 ✅ Medium to large projects
 ✅ Team projects
@@ -167,13 +186,15 @@ function Header({ title }: Props) {
 
 
 
-## TypeScript Basic Types
+
+
+### TypeScript Basic Types
 
 TypeScript ရဲ့ **Basic Types** တွေက program ထဲမှာ သုံးမယ့် data အမျိုးအစားတွေကို တိတိကျကျ သတ်မှတ်ပေးနိုင်အောင် ကူညီပေးပါတယ်။ ဒါကြောင့် bug တွေကို early stage မှာ ဖမ်းနိုင်ပြီး code ကို ပိုပြီး safe ဖြစ်စေပါတယ်။
 
 ---
 
-## 1. string
+1. string
 
 စာသား (text) အမျိုးအစားကို ကိုယ်စားပြုပါတယ်။
 
@@ -184,7 +205,7 @@ let message: string = `Hello ${username}`;
 
 ---
 
-## 2. number
+ 2. number
 
 ကိန်းဂဏန်း အမျိုးအစားအားလုံး (integer, float) ကို သုံးပါတယ်။
 
@@ -195,7 +216,7 @@ let price: number = 1999.99;
 
 ---
 
-## 3. boolean
+ 3. boolean
 
 True / False value အတွက် သုံးပါတယ်။
 
@@ -206,7 +227,7 @@ let hasError: boolean = false;
 
 ---
 
-## 4. array
+ 4. array
 
 တူညီတဲ့ type ရှိတဲ့ data တွေကို စုထားတဲ့ list ဖြစ်ပါတယ်။
 
@@ -217,7 +238,7 @@ let names: Array<string> = ["Su Su", "Aung Aung"];
 
 ---
 
-## 5. tuple
+ 5. tuple
 
 Array ဖြစ်ပေမယ့် **order နဲ့ type တိတိကျကျ** သတ်မှတ်ထားတာပါ။
 
@@ -227,7 +248,7 @@ let user: [number, string] = [1, "Kyaw Kyaw"];
 
 ---
 
-## 6. enum
+6. enum
 
 အတူတူ ဆိုင်တဲ့ constant value တွေကို group လုပ်ဖို့ သုံးပါတယ်။
 
@@ -243,7 +264,7 @@ let currentStatus: Status = Status.Success;
 
 ---
 
-## 7. any
+7. any
 
 TypeScript ရဲ့ type checking ကို **ပိတ်လိုက်တဲ့ type** ဖြစ်ပါတယ်။
 
@@ -257,7 +278,7 @@ value = true;
 
 ---
 
-## 8. unknown
+ 8. unknown
 
 `any` နဲ့ ဆင်တူပေမယ့် **ပိုပြီး safe** ဖြစ်ပါတယ်။
 
@@ -272,7 +293,7 @@ if (typeof data === "string") {
 
 ---
 
-## 9. void
+ 9. void
 
 Function က ဘာမှ return မလုပ်တဲ့အခါ သုံးပါတယ်။
 
@@ -284,7 +305,7 @@ function logMessage(msg: string): void {
 
 ---
 
-## 10. null & undefined
+ 10. null & undefined
 
 Value မရှိတာကို ကိုယ်စားပြုပါတယ်။
 
@@ -297,7 +318,7 @@ Strict mode မှာ အသုံးပြုရင် သတိထားရပ
 
 ---
 
-## 11. never
+ 11. never
 
 ဘယ်တော့မှ value မ return မလုပ်တဲ့ function အတွက် သုံးပါတယ်။
 
@@ -325,9 +346,12 @@ function throwError(msg: string): never {
 ---
 
 
-## Type Annotation & Type Inference
 
-## What is Type Annotation?
+
+
+### Type Annotation & Type Inference
+
+ What is Type Annotation?
 
 Type Annotation ဆိုတာ
 👉 Variable / function ကို ဒီ type ဖြစ်ရမယ် လို့ ကိုယ်တိုင်ရေးပေးတာပါ
@@ -370,7 +394,7 @@ let user: { id: number; name: string } = {
 
 ---
 
-## What is Type Inference?
+ What is Type Inference?
 
 Type Inference ဆိုတာ
  TypeScript က ကိုယ်တိုင် type ကို ခန့်မှန်းပေးတာ
@@ -415,9 +439,9 @@ const user = {
 
 ---
 
-## Interfaces & Type Aliases
+### Interfaces & Type Aliases
 
-## Interface
+ Interface
 
  What is Interface?
 
@@ -457,7 +481,7 @@ interface Employee extends Person {
 
 
 
-## Type Alias
+ Type Alias
 
 What is Type Alias?
 
@@ -490,7 +514,7 @@ type AdminUser = User & { role: string };
 
 ---
 
-## Compiling TypeScript
+### Compiling TypeScript
 
 ## tsc & tsconfig.json
 
@@ -542,13 +566,13 @@ tsc --init
 
 ---
 
-## Union & Intersection Types (TypeScript)
+### Union & Intersection Types (TypeScript)
 
 * Union (|) → OR (ဒီ type ဖြစ်နိုင်တယ် သို့မဟုတ် အဲ့ဒီ type)
 
 * Intersection (&) → AND (ဒီ type နဲ့ အဲ့ဒီ type နှစ်ခုလုံး)
 
-## Union Types (|)
+### Union Types (|)
 
 * Basic Union
 ```js
@@ -583,10 +607,10 @@ let state: Status = "loading";
 
 ```
 
-## Intersection Types (&)
+### Intersection Types (&)
 
 
-## Basic Intersection
+### Basic Intersection
 ```js
 type Person = {
   name: string;
@@ -606,7 +630,7 @@ const staff: Staff = {
 ```
 * properties အားလုံးပါရမယ်
 
-## Intersection with Interfaces
+### Intersection with Interfaces
 
 ```js
 interface User {
@@ -622,7 +646,7 @@ type AdminUser = User & Admin;
 ```
 ---
 
-## Intersection in React Props
+### Intersection in React Props
 
 ```js
 interface BaseProps {
@@ -638,7 +662,7 @@ type Props = BaseProps & ButtonProps;
 
 ---
 
-## What are Generics in TypeScript?
+### What are Generics in TypeScript?
 
 * Generics let you write reusable, type-safe code that works with different data types without losing type information.
 
@@ -777,7 +801,7 @@ Usage:
 />
 ```
 
-## Utility Types ဆိုတာ ဘာလဲ?
+### Utility Types ဆိုတာ ဘာလဲ?
 
 * Utility Types ဆိုတာ TypeScript မှာ ပါဝင်ပြီးသား (built-in) ဖြစ်တဲ့ အထူးအသုံးဝင်တဲ့ Type တွေပါ။ ဒီ Type တွေကို သုံးပြီး ရှိပြီးသား Type တွေကို ပြောင်းလဲပြီး အသစ်တွေ ဖန်တီးလို့ရပါတယ်။
 
@@ -797,10 +821,11 @@ type SimpleUser = Pick<User, 'id' | 'name'>;  // လိုတဲ့ property တ
 type UserWithoutAge = Omit<User, 'age'>;  // age ကို ဖယ်ထုတ်
 ```
 
-## အဓိက Utility Types (၁၀) မျိုး
+# အဓိက Utility Types (၁၀) မျိုး
 
-## 1.Partial<T> 
+## 1.Partial
 
+* Partial<T> 
 ```js
 interface User {
     id: number;
@@ -825,8 +850,8 @@ const user4: PartialUser = {
 const user5: PartialUser = { phone: "09123456789" };  // ✗ Error! phone မရှိ
 ```
 ---
-## 2. Required<T> 
-
+## 2. Required
+* Required<T> 
 ```js
 interface Config {
     apiUrl?: string;      // optional
@@ -848,8 +873,8 @@ const config2: RequiredConfig = {
     apiUrl: "https://api.example.com"
 };  // ✗ Error! timeout, retry မထည့်
 ```
-## 3. Readonly<T>
-
+## 3. Readonly
+* Readonly<T>
 ```js
 interface Book {
     title: string;
@@ -873,8 +898,8 @@ book.price = 6000;              // ✗ Error! ပြင်လို့မရ
 ```
 
 ---
-## 4. Pick<T, K>
-
+## 4. Pick
+* Pick<T, K>
 ```js
 interface Product {
     id: number;
@@ -904,8 +929,8 @@ const wrongPreview: ProductPreview = {
 
 ```
 ---
-## 5. Omit<T, K>
-
+## 5. Omit
+* Omit<T, K>
 ```js
 interface Student {
     id: number;
@@ -938,8 +963,8 @@ const wrongStudent: PublicStudent = {
 
 ```
 ---
-## 6. Record<K, T>
-
+## 6. Record
+* Record<K, T>
 ```js
 // Key တွေ ဘယ်လိုဖြစ်မယ်၊ Value တွေ ဘယ်လိုဖြစ်မယ် သတ်မှတ်
 type PageTitles = Record<string, string>;
@@ -963,8 +988,8 @@ const permissions: RolePermissions = {
 
 ```
 ---
-## 7. Exclude<T, U>
-
+## 7. Exclude
+* Exclude<T, U>
 ```js
 type Colors = 'red' | 'blue' | 'green' | 'yellow';
 type PrimaryColors = Exclude<Colors, 'yellow'>;  // 'yellow' ဖယ်ထုတ်
@@ -977,7 +1002,8 @@ const color2: PrimaryColors = 'blue';   // ✓
 const color3: PrimaryColors = 'yellow'; // ✗ Error!
 ```
 ---
-## 8. Extract<T, U>
+## 8. Extract
+* Extract<T, U>
 ```js
 type Animals = 'cat' | 'dog' | 'bird' | 'fish';
 type Pets = Extract<Animals, 'cat' | 'dog'>;  // cat, dog ပဲယူ
@@ -989,8 +1015,8 @@ const pet1: Pets = 'cat';   // ✓
 const pet2: Pets = 'dog';   // ✓
 const pet3: Pets = 'bird';  // ✗ Error!
 ```
-## 9.NonNullable<T>
-
+## 9.NonNullable
+* NonNullable<T>
 ```js
 type MaybeString = string | null | undefined;
 type DefinitelyString = NonNullable<MaybeString>;  // null, undefined ဖယ်
@@ -1004,8 +1030,8 @@ const str3: DefinitelyString = undefined;       // ✗ Error!
 
 ```
 ---
-## 10. ReturnType<T> 
-
+## 10. ReturnType
+* ReturnType<T> 
 ```js
 function getUser() {
     return {
