@@ -10,7 +10,17 @@
   - [Union & Intersection Types](#union--intersection-types)
   - [Generics in TypeScript](#what-are-generics-in-typescript)
   - [Utility Types](#utility-types-ဆိုတာ-ဘာလဲ)
-    - [1.Partial<T>](#1.Partial<T>)
+    - [Partial](#1-partial)
+    - [Required](#2-required)
+    - [Readonly](#3-readonly)
+    - [Pick](#4-pick)
+    - [Omit](#5-omit)
+    - [Record](#6-record)
+    - [Exclude](#7-exclude)
+    - [Extract](#8-extract)
+    - [NonNullable](#9-nonnullable)
+    - [ReturnType](#10-returntype)
+
 - [React With TypeScript](#react-with-typescript)
   - [React Hooks with TypeScript](#react-hooks-with-typescript)
   - [Props & Children Typing](#props--children-typing)
@@ -813,8 +823,9 @@ type UserWithoutAge = Omit<User, 'age'>;  // age ကို ဖယ်ထုတ်
 
 # အဓိက Utility Types (၁၀) မျိုး
 
-## 1.Partial<T> 
+## 1.Partial
 
+* Partial<T> 
 ```js
 interface User {
     id: number;
@@ -839,8 +850,8 @@ const user4: PartialUser = {
 const user5: PartialUser = { phone: "09123456789" };  // ✗ Error! phone မရှိ
 ```
 ---
-## 2. Required<T> 
-
+## 2. Required
+* Required<T> 
 ```js
 interface Config {
     apiUrl?: string;      // optional
@@ -862,8 +873,8 @@ const config2: RequiredConfig = {
     apiUrl: "https://api.example.com"
 };  // ✗ Error! timeout, retry မထည့်
 ```
-## 3. Readonly<T>
-
+## 3. Readonly
+* Readonly<T>
 ```js
 interface Book {
     title: string;
@@ -887,8 +898,8 @@ book.price = 6000;              // ✗ Error! ပြင်လို့မရ
 ```
 
 ---
-## 4. Pick<T, K>
-
+## 4. Pick
+* Pick<T, K>
 ```js
 interface Product {
     id: number;
@@ -918,8 +929,8 @@ const wrongPreview: ProductPreview = {
 
 ```
 ---
-## 5. Omit<T, K>
-
+## 5. Omit
+* Omit<T, K>
 ```js
 interface Student {
     id: number;
@@ -952,8 +963,8 @@ const wrongStudent: PublicStudent = {
 
 ```
 ---
-## 6. Record<K, T>
-
+## 6. Record
+* Record<K, T>
 ```js
 // Key တွေ ဘယ်လိုဖြစ်မယ်၊ Value တွေ ဘယ်လိုဖြစ်မယ် သတ်မှတ်
 type PageTitles = Record<string, string>;
@@ -977,8 +988,8 @@ const permissions: RolePermissions = {
 
 ```
 ---
-## 7. Exclude<T, U>
-
+## 7. Exclude
+* Exclude<T, U>
 ```js
 type Colors = 'red' | 'blue' | 'green' | 'yellow';
 type PrimaryColors = Exclude<Colors, 'yellow'>;  // 'yellow' ဖယ်ထုတ်
@@ -991,7 +1002,8 @@ const color2: PrimaryColors = 'blue';   // ✓
 const color3: PrimaryColors = 'yellow'; // ✗ Error!
 ```
 ---
-## 8. Extract<T, U>
+## 8. Extract
+* Extract<T, U>
 ```js
 type Animals = 'cat' | 'dog' | 'bird' | 'fish';
 type Pets = Extract<Animals, 'cat' | 'dog'>;  // cat, dog ပဲယူ
@@ -1003,8 +1015,8 @@ const pet1: Pets = 'cat';   // ✓
 const pet2: Pets = 'dog';   // ✓
 const pet3: Pets = 'bird';  // ✗ Error!
 ```
-## 9.NonNullable<T>
-
+## 9.NonNullable
+* NonNullable<T>
 ```js
 type MaybeString = string | null | undefined;
 type DefinitelyString = NonNullable<MaybeString>;  // null, undefined ဖယ်
@@ -1018,8 +1030,8 @@ const str3: DefinitelyString = undefined;       // ✗ Error!
 
 ```
 ---
-## 10. ReturnType<T> 
-
+## 10. ReturnType
+* ReturnType<T> 
 ```js
 function getUser() {
     return {
