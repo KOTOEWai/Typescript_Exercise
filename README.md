@@ -1,11 +1,19 @@
 
-## Table of Contents
+## 📑 Table of Contents
 
-
-  - [Typescript_Exercise](#typescript_exercise)
-    -[What is TypeScript?](#what_is_typescript?)
-    -[TypeScript Basic Types](#typeScript_basic_types)
-  -[React With Typescript](#react_with_typescript)
+- [Typescript Exercise](#typescript-exercise)
+  - [What is TypeScript](#what-is-typescript)
+  - [TypeScript Basic Types](#typescript-basic-types)
+  - [Type Annotation & Type Inference](#type-annotation--type-inference)
+  - [Interfaces & Type Aliases](#interfaces--type-aliases)
+  - [Compiling TypeScript](#compiling-typescript)
+  - [Union & Intersection Types](#union--intersection-types)
+  - [Generics in TypeScript](#what-are-generics-in-typescript)
+  - [Utility Types](#utility-types-ဆိုတာ-ဘာလဲ)
+- [React With TypeScript](#react-with-typescript)
+  - [React Hooks with TypeScript](#react-hooks-with-typescript)
+  - [Props & Children Typing](#props--children-typing)
+  - [Event Handling Types](#event-handling-types)
 
 ## Typescript_Exercise
 
