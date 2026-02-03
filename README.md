@@ -506,7 +506,7 @@ type AdminUser = User & { role: string };
 
 ### Compiling TypeScript
 
-### tsc & tsconfig.json
+## tsc & tsconfig.json
 
 ### What is compiling?
 
@@ -811,7 +811,7 @@ type SimpleUser = Pick<User, 'id' | 'name'>;  // လိုတဲ့ property တ
 type UserWithoutAge = Omit<User, 'age'>;  // age ကို ဖယ်ထုတ်
 ```
 
-### အဓိက Utility Types (၁၀) မျိုး
+# အဓိက Utility Types (၁၀) မျိုး
 
 ## 1.Partial<T> 
 
