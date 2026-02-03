@@ -10,12 +10,13 @@
   - [Union & Intersection Types](#union--intersection-types)
   - [Generics in TypeScript](#what-are-generics-in-typescript)
   - [Utility Types](#utility-types-ဆိုတာ-ဘာလဲ)
+    -[1.Partial<T>](#1.Partial<T>)
 - [React With TypeScript](#react-with-typescript)
   - [React Hooks with TypeScript](#react-hooks-with-typescript)
   - [Props & Children Typing](#props--children-typing)
   - [Event Handling Types](#event-handling-types)
 
-## Typescript_Exercise
+## Typescript Exercise
 
 
 ### What is TypeScript?
@@ -503,9 +504,9 @@ type AdminUser = User & { role: string };
 
 ---
 
-## Compiling TypeScript
+### Compiling TypeScript
 
-## tsc & tsconfig.json
+### tsc & tsconfig.json
 
 ### What is compiling?
 
@@ -555,13 +556,13 @@ tsc --init
 
 ---
 
-## Union & Intersection Types (TypeScript)
+### Union & Intersection Types (TypeScript)
 
 * Union (|) → OR (ဒီ type ဖြစ်နိုင်တယ် သို့မဟုတ် အဲ့ဒီ type)
 
 * Intersection (&) → AND (ဒီ type နဲ့ အဲ့ဒီ type နှစ်ခုလုံး)
 
-## Union Types (|)
+### Union Types (|)
 
 * Basic Union
 ```js
@@ -596,10 +597,10 @@ let state: Status = "loading";
 
 ```
 
-## Intersection Types (&)
+### Intersection Types (&)
 
 
-## Basic Intersection
+### Basic Intersection
 ```js
 type Person = {
   name: string;
@@ -619,7 +620,7 @@ const staff: Staff = {
 ```
 * properties အားလုံးပါရမယ်
 
-## Intersection with Interfaces
+### Intersection with Interfaces
 
 ```js
 interface User {
@@ -635,7 +636,7 @@ type AdminUser = User & Admin;
 ```
 ---
 
-## Intersection in React Props
+### Intersection in React Props
 
 ```js
 interface BaseProps {
@@ -651,7 +652,7 @@ type Props = BaseProps & ButtonProps;
 
 ---
 
-## What are Generics in TypeScript?
+### What are Generics in TypeScript?
 
 * Generics let you write reusable, type-safe code that works with different data types without losing type information.
 
@@ -790,7 +791,7 @@ Usage:
 />
 ```
 
-## Utility Types ဆိုတာ ဘာလဲ?
+### Utility Types ဆိုတာ ဘာလဲ?
 
 * Utility Types ဆိုတာ TypeScript မှာ ပါဝင်ပြီးသား (built-in) ဖြစ်တဲ့ အထူးအသုံးဝင်တဲ့ Type တွေပါ။ ဒီ Type တွေကို သုံးပြီး ရှိပြီးသား Type တွေကို ပြောင်းလဲပြီး အသစ်တွေ ဖန်တီးလို့ရပါတယ်။
 
@@ -810,7 +811,7 @@ type SimpleUser = Pick<User, 'id' | 'name'>;  // လိုတဲ့ property တ
 type UserWithoutAge = Omit<User, 'age'>;  // age ကို ဖယ်ထုတ်
 ```
 
-## အဓိက Utility Types (၁၀) မျိုး
+### အဓိက Utility Types (၁၀) မျိုး
 
 ## 1.Partial<T> 
 
