@@ -1,7 +1,16 @@
+
+## 📑 Table of Contents
+
+
+  - [Typescript_Exercise](#typescript_exercise)
+    -[What is TypeScript?](#what_is_typescript?)
+    -[Why TypeScript?](#why_typeScript?)
+  -[React With Typescript](#react_with_typescript)
+
 # Typescript_Exercise
 
 
-# What is TypeScript?
+## What is TypeScript?
 
 **TypeScript** ဆိုတာ JavaScript ကို အခြေခံထားတဲ့ **strongly-typed programming language** တစ်ခုဖြစ်ပြီး Microsoft က ဖန်တီးထားတာပါ။ JavaScript ကို ပိုပြီး **safe, scalable, maintainable** ဖြစ်အောင် တိုးချဲ့ထားတဲ့ language လို့ နားလည်နိုင်ပါတယ်။
 
@@ -156,7 +165,9 @@ function Header({ title }: Props) {
 ---
 
 
-# TypeScript Basic Types
+
+
+## TypeScript Basic Types
 
 TypeScript ရဲ့ **Basic Types** တွေက program ထဲမှာ သုံးမယ့် data အမျိုးအစားတွေကို တိတိကျကျ သတ်မှတ်ပေးနိုင်အောင် ကူညီပေးပါတယ်။ ဒါကြောင့် bug တွေကို early stage မှာ ဖမ်းနိုင်ပြီး code ကို ပိုပြီး safe ဖြစ်စေပါတယ်။
 
@@ -313,7 +324,8 @@ function throwError(msg: string): never {
 
 ---
 
-# Type Annotation & Type Inference
+
+## Type Annotation & Type Inference
 
 ## What is Type Annotation?
 
@@ -403,7 +415,7 @@ const user = {
 
 ---
 
-# Interfaces & Type Aliases
+## Interfaces & Type Aliases
 
 ## Interface
 
@@ -478,7 +490,7 @@ type AdminUser = User & { role: string };
 
 ---
 
-# Compiling TypeScript
+## Compiling TypeScript
 
 ## tsc & tsconfig.json
 
@@ -530,13 +542,13 @@ tsc --init
 
 ---
 
-# Union & Intersection Types (TypeScript)
+## Union & Intersection Types (TypeScript)
 
-## Union (|) → OR (ဒီ type ဖြစ်နိုင်တယ် သို့မဟုတ် အဲ့ဒီ type)
+* Union (|) → OR (ဒီ type ဖြစ်နိုင်တယ် သို့မဟုတ် အဲ့ဒီ type)
 
-## Intersection (&) → AND (ဒီ type နဲ့ အဲ့ဒီ type နှစ်ခုလုံး)
+* Intersection (&) → AND (ဒီ type နဲ့ အဲ့ဒီ type နှစ်ခုလုံး)
 
-### Union Types (|)
+## Union Types (|)
 
 * Basic Union
 ```js
@@ -571,7 +583,8 @@ let state: Status = "loading";
 
 ```
 
-# Intersection Types (&)
+## Intersection Types (&)
+
 
 ## Basic Intersection
 ```js
@@ -607,6 +620,8 @@ interface Admin {
 type AdminUser = User & Admin;
 
 ```
+---
+
 ## Intersection in React Props
 
 ```js
@@ -620,7 +635,10 @@ interface ButtonProps {
 
 type Props = BaseProps & ButtonProps;
 ```
-# What are Generics in TypeScript?
+
+---
+
+## What are Generics in TypeScript?
 
 * Generics let you write reusable, type-safe code that works with different data types without losing type information.
 
@@ -759,7 +777,8 @@ Usage:
 />
 ```
 
-# Utility Types ဆိုတာ ဘာလဲ?
+## Utility Types ဆိုတာ ဘာလဲ?
+
 * Utility Types ဆိုတာ TypeScript မှာ ပါဝင်ပြီးသား (built-in) ဖြစ်တဲ့ အထူးအသုံးဝင်တဲ့ Type တွေပါ။ ဒီ Type တွေကို သုံးပြီး ရှိပြီးသား Type တွေကို ပြောင်းလဲပြီး အသစ်တွေ ဖန်တီးလို့ရပါတယ်။
 
 ```js
@@ -777,7 +796,10 @@ type PartialUser = Partial<User>;  // property အားလုံး optional �
 type SimpleUser = Pick<User, 'id' | 'name'>;  // လိုတဲ့ property တွေပဲ ယူ
 type UserWithoutAge = Omit<User, 'age'>;  // age ကို ဖယ်ထုတ်
 ```
- ## 1.Partial<T> 
+
+## အဓိက Utility Types (၁၀) မျိုး
+
+## 1.Partial<T> 
 
 ```js
 interface User {
@@ -851,7 +873,6 @@ book.price = 6000;              // ✗ Error! ပြင်လို့မရ
 ```
 
 ---
-
 ## 4. Pick<T, K>
 
 ```js
@@ -917,7 +938,6 @@ const wrongStudent: PublicStudent = {
 
 ```
 ---
-
 ## 6. Record<K, T>
 
 ```js
@@ -969,8 +989,7 @@ const pet1: Pets = 'cat';   // ✓
 const pet2: Pets = 'dog';   // ✓
 const pet3: Pets = 'bird';  // ✗ Error!
 ```
-
-## NonNullable<T>
+## 9.NonNullable<T>
 
 ```js
 type MaybeString = string | null | undefined;
@@ -985,7 +1004,6 @@ const str3: DefinitelyString = undefined;       // ✗ Error!
 
 ```
 ---
-
 ## 10. ReturnType<T> 
 
 ```js
@@ -1010,7 +1028,24 @@ const user: UserReturnType = {
 
 ```
 
+
 ---
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# React With Typescript
+
 # React Hooks with TypeScript
 
 React ကို TypeScript နဲ့ သုံးတဲ့အခါ **Hooks** တွေကို type-safe ဖြစ်အောင် သုံးနိုင်တာက အရေးကြီးဆုံးအချက်ပါ။ 
@@ -1227,8 +1262,8 @@ React Hooks + TypeScript =
 
 ---
 
-# Props & Children Typing 
 
+# Props & Children Typing 
 
 ## 1. Why Props Typing Matters
 
@@ -1412,6 +1447,7 @@ type TextOnlyProps = {
 
 ## 9. Props with Default Values
 
+
 ```tsx
 type AvatarProps = {
   size?: number;
@@ -1421,14 +1457,13 @@ function Avatar({ size = 40 }: AvatarProps) {
   return <img width={size} height={size} />;
 }
 ```
-
 ---
 ✔ Always define a Props type or interface
 ✔ Use `React.ReactNode` for children
 ✔ Prefer destructuring in function parameters
 ✔ Avoid `React.FC` unless your team standardizes it
 ✔ Keep props small and meaningful
----
+
 * Props typing ဆိုတာ Component ကို ဘယ်လို data ပို့လို့ရလဲဆိုတာ သတ်မှတ်ပေးခြင်းပါ
 * `children` ကို type လုပ်တဲ့အခါ `React.ReactNode` ကို အသုံးပြုပါ
 * Optional props တွေအတွက် `?` သုံးပါ
@@ -1436,3 +1471,125 @@ function Avatar({ size = 40 }: AvatarProps) {
 ---
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# Event Handling Types
+
+## Core Rule (Memorize This)
+```js
+React.EventType<HTML_ELEMENT>
+```
+
+## MUST-KNOW Event Types
+```js
+export default function Button() {
+   
+    // Form Submit Handler
+    const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        console.log("Form submitted");
+    }
+      
+    // Text Input Change Handler
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        console.log("Input changed: ", e.target.value);
+    
+    }
+
+    // File Input Change Handler
+    const handleFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.files && e.target.files[0]) {
+            console.log("File selected: ", e.target.files[0].name);
+        }   
+    }
+
+    // Select Dropdown Change Handler
+    const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        console.log("Selected option: ", e.target.value);
+    }
+    
+    // Textarea Change Handler
+    const handleTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+        console.log("Textarea changed: ", e.target.value);
+    }
+    
+    // Button Click Handler
+    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+        e.preventDefault();
+        console.log("Button clicked");
+        console.log("Mouse position:", e.clientX, e.clientY);
+    }
+    
+
+  
+    return (
+        <div>
+            <form onSubmit={handleSubmit} >
+           
+                {/* Text Input */}
+                 <input type="text" onChange={handleChange} />
+
+                {/* File Input */}
+                <div style={{marginBottom: '15px'}}>
+                    <label htmlFor="fileInput">File Upload: </label>
+                    <input 
+                        id="fileInput"
+                        type="file" 
+                        accept="image/*" 
+                        onChange={handleFile}
+                        style={{width: '100%'}}
+                    />
+                </div>
+
+                {/* Select Dropdown */}
+                <div style={{marginBottom: '15px'}}>
+                    <label htmlFor="mySelect">Select Option: </label>
+                    <select 
+                        id="mySelect" 
+                        onChange={handleSelect}
+                        style={{width: '100%', padding: '8px'}}
+                    >
+                        <option value="">Choose...</option>
+                        <option value="option1">Option 1</option>
+                        <option value="option2">Option 2</option>
+                        <option value="option3">Option 3</option>
+                    </select>
+                </div>
+
+                {/* Textarea */}
+                <div style={{marginBottom: '15px'}}>
+                    <label htmlFor="mytext">Textarea: </label>
+                    <textarea 
+                        id="mytext" 
+                        onChange={handleTextArea}
+                        placeholder="Type something..."
+                        rows={3}
+                        style={{width: '100%', padding: '8px', boxSizing: 'border-box'}}
+                    ></textarea>
+                </div>
+                
+                 <button onClick={handleClick} type="submit" style={{marginBottom: '15px'}} >
+                        Click
+                 </button>
+            </form>
+
+        
+
+            
+        </div>
+    )
+}
+```
