@@ -800,7 +800,7 @@ Usage:
   renderItem={(item) => <div>{item}</div>}
 />
 ```
-
+---
 ### Utility Types ဆိုတာ ဘာလဲ?
 
 * Utility Types ဆိုတာ TypeScript မှာ ပါဝင်ပြီးသား (built-in) ဖြစ်တဲ့ အထူးအသုံးဝင်တဲ့ Type တွေပါ။ ဒီ Type တွေကို သုံးပြီး ရှိပြီးသား Type တွေကို ပြောင်းလဲပြီး အသစ်တွေ ဖန်တီးလို့ရပါတယ်။
@@ -1376,9 +1376,9 @@ function Input({ onChange }: InputProps) {
 
 ---
 
-## 5. Children Typing (The Important Part)
+## 5. Children Typing 
 
-### The Correct Way: `React.ReactNode`
+* Component ထဲမှာ JSX / text / element တွေ accept လုပ်ချင်ရင်
 
 ```tsx
 type ContainerProps = {
@@ -1400,30 +1400,19 @@ function Container({ children }: ContainerProps) {
 
 ---
 
-## 6. Children with Other Props
+## 6. Union types 
 
-```tsx
-type LayoutProps = {
-  title: string;
-  children: React.ReactNode;
+* Value တစ်ခုမှာ type အများကြီး ဖြစ်နိုင်တဲ့အခါ
+```js
+type Status = "loading" | "success" | "error";
+
+type Props = {
+  status: Status;
 };
 
-function Layout({ title, children }: LayoutProps) {
-  return (
-    <section>
-      <h1>{title}</h1>
-      {children}
-    </section>
-  );
-}
-```
-
-Usage:
-
-```tsx
-<Layout title="Dashboard">
-  <p>Welcome back!</p>
-</Layout>
+const StatusText = ({ status }: Props) => {
+  return <p>{status}</p>;
+};
 ```
 
 ---
@@ -1451,7 +1440,7 @@ const Box: React.FC<{ title: string }> = ({ title, children }) => {
 
 ---
 
-## 8. Restricting Children (Advanced)
+## 8. Restricting Children 
 
 Only allow a specific component:
 
@@ -1483,6 +1472,35 @@ function Avatar({ size = 40 }: AvatarProps) {
   return <img width={size} height={size} />;
 }
 ```
+---
+## 10. Event Handlers props
+
+```js
+interface CounterProps {
+    count: number;
+    // Different ways to type functions:
+    onIncrement: () => void;                    // No parameters, returns nothing
+    onDecrement: (amount: number) => void;      // Takes number, returns nothing
+    onChange: (newValue: number) => number;     // Takes number, returns number
+    onClick?: (event: React.MouseEvent) => void; // React event handler
+}
+
+function Counter({ count, onIncrement, onDecrement }: CounterProps) {
+    return (
+        <div>
+            <button onClick={onIncrement}>+</button>
+            <span>{count}</span>
+            <button onClick={() => onDecrement(1)}>-</button>
+        </div>
+    );
+}
+
+```
+
+
+
+
+
 ---
 ✔ Always define a Props type or interface
 ✔ Use `React.ReactNode` for children
