@@ -27,10 +27,7 @@
   - [Event Handling Types](#event-handling-types)
 
 ## Typescript Exercise
-| အမည် | အသက် | မြို့ |
-| --- | --- | --- |
-| မောင်မောင် | ၂၀ | ရန်ကုန် |
-| မမ | ၂၂ | မန္တလေး |
+
 
 ### What is TypeScript?
 
